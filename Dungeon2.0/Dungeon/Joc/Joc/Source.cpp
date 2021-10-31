@@ -32,7 +32,7 @@ struct PlayerInfo {
 	int cur_life = 100;
 	int dmg;
 	int swordN;
-	int bombN=4;
+	int bombN;
 	int potionN;
 	int keyN;
 	int pos_x;
@@ -381,7 +381,7 @@ void finalBoss() {
 	if (currentEnemyName == "Zu: The fire dragon") {
 
 		if (enemyCurhp == 200) {
-			std::cout << "You finally made it to Zu: The fire dragon! He is the boss of the dungeon for a reason.. so be careful! Good luck!\n";
+			std::cout << "\nYou made it to Zu: The fire dragon! He looks at you like a human looks at an ant...\nWill I be able to slay this monstruosity..? \n";
 		}
 	}
 }
@@ -601,6 +601,7 @@ int main() {
 							if(getObject(player.pos_x, player.pos_y) == "Locked Door"){
 								if (player.keyN > 0) {
 								std::cout << "It seems the key worked! The door opens for you!\n";
+								player.keyN--;
 								changeTile();
 									}
 								else {
@@ -684,14 +685,14 @@ int main() {
 					}
 
 				if (player.cur_life <= 0) {
-					std::cout << "Seems like you died...\n";
+					std::cout << "\n\nSeems like you died...\n";
 					std::cout << "------------GAME OVER----------\n";
 					system("pause");
 					return 0;
 				}
 				else if (enemyCurhp <= 0) {
 					if (enemyMaxhp == 200) {
-						std::cout << "You defeated Zu! Your name will never be forgotten!\n";
+						std::cout << "\n\nYou defeated Zu! Thank you! Your name will never be forgotten!\n";
 						std::cout << "                                 _\n";
 						std::cout << "                                | |\n";
 						std::cout << "  ___ ___  _ __   __ _ _ __ __ _| |_ ___\n";
