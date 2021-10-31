@@ -63,23 +63,23 @@ void initPlayer() {
 void initEnemys() {
 	
 	enemies[GOBLIN].name = "Goblin";
-	enemies[GOBLIN].max_life = 20;
-	enemies[GOBLIN].cur_life = 20;
+	enemies[GOBLIN].max_life = 25;
+	enemies[GOBLIN].cur_life = 25;
 	enemies[GOBLIN].attack = "Slash";
 
 	enemies[TROLL].name = "Troll";
-	enemies[TROLL].max_life = 40;
-	enemies[TROLL].cur_life = 40;
+	enemies[TROLL].max_life = 50;
+	enemies[TROLL].cur_life = 50;
 	enemies[TROLL].attack = "Butting";
 
 	enemies[WIZARD].name = "Wizard";
-	enemies[WIZARD].max_life = 60;
-	enemies[WIZARD].cur_life = 60;
-	enemies[WIZARD].attack = "Fire Explosion";
+	enemies[WIZARD].max_life = 65;
+	enemies[WIZARD].cur_life = 65;
+	enemies[WIZARD].attack = "Fire ball";
 
 	enemies[DRAGON].name = "Zu: The fire dragon";
-	enemies[DRAGON].max_life = 200;
-	enemies[DRAGON].cur_life = 200;
+	enemies[DRAGON].max_life = 160;
+	enemies[DRAGON].cur_life = 160;
 	enemies[DRAGON].attack = "Fire Breath";
 }
 
@@ -335,16 +335,16 @@ void curEnemy() {
 void initEnemyDmg() {
 
 	if (getEnemy(player.pos_x, player.pos_y) == "Goblin") {
-		enemyDmg = 5 + rand() % 8 + 1;
+		enemyDmg = 5 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Troll") {
-		enemyDmg = 10 + rand() % 8 + 1;
+		enemyDmg = 10 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Wizard") {
-		enemyDmg = 15 + rand() % 10 + 1;
+		enemyDmg = 15 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Zu: The fire dragon") {
-		enemyDmg = 15 + rand() % 10 + 1;
+		enemyDmg = 15 + rand() % 20 + 1;
 	}
 }
 
@@ -399,7 +399,7 @@ void finalBoss() {
 	if (currentEnemyName == "Zu: The fire dragon") {
 
 		if (enemyCurhp == 200) {
-			std::cout << "\nHe looks at you like a human looks at an ant...\nWill I be able to slay this monstruosity..? \n";
+			std::cout << "\nHe looks at you like a human looks at an ant...\nWill I be able to slay this monstruosity..? \n\n";
 		}
 	}
 }
@@ -660,7 +660,7 @@ int main() {
 						if (split_input[0] == "use") {
 							if (split_input[1] == "sword") {
 								if (player.swordN > 0) {
-									player.dmg = 30;
+									player.dmg = 15 + rand()%10+1;
 								}
 								else {
 									std::cout << "You dont have any swords!\n";
@@ -668,7 +668,7 @@ int main() {
 							}
 							else if (split_input[1] == "bomb") {
 								if (player.bombN > 0) {
-									player.dmg = 60;
+									player.dmg = 35 + rand()%20 +1;
 									player.bombN--;
 								}
 								else {
@@ -687,7 +687,7 @@ int main() {
 								}
 							}
 							else if (split_input[1] == "fists") {
-								player.dmg =5 + rand() % 10 + 1;
+								player.dmg =7 + rand() % 8 + 1;
 							}
 							else {
 								std::cout << "Use what?\n";
