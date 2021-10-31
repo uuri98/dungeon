@@ -414,21 +414,24 @@ void showStatus() {
 }
 
 void showHistory() {
-	std::cout << "-------------------------------------------------ZU'S LAIR-------------------------------------------------";
-	std::cout << "One day, attracted by the gold of the dwarfs, an ancient dragon suddenly appeared.  ";
-	std::cout << "Dragons have a big affinity for shiny objects, and once he smelled the gold, there was nothing we could do. ";
-	std::cout << "In no time, he destroyed our village ,took control of the prince's treasure and with that, the White Castle.";
-	std::cout << "Please adventurer, help us recover our Castle and the big treasure that shelters. ";
-	std::cout << "Really? You are up for it?! Thank you...! Excuse me.. what was your name?";
+	std::cout << "-------------------------------------------------ZU'S LAIR-------------------------------------------------\n";
+	std::cout << "One day, attracted by the gold of the dwarfs, an ancient dragon suddenly appeared.  \n";
+	std::cout << "Dragons have a big affinity for shiny objects, and once he smelled the gold, there was nothing we could do. \n";
+	std::cout << "In no time, he destroyed our village ,took control of the prince's treasure and with that, the White Mines.\n";
+	std::cout << "Please adventurer, help us recover our Mines and the big treasure it shelters. \n";
+	std::cout << "Really? You are up for it?! Thank you...mmmm... excuse me but.. what was your name?\n";
 	std::cin >> player.name;
+	std::cout << std::endl << std::endl;
+
 }
 
 void showWelcome() {
-	std::cout << "Right " << player.name << "! You are one step away from entering the dungeon... Before entering, I have to warn you!\n"; 
-	std::cout << "Through this path, you will face dangerous enemies you've never seen and you will discover what truly fear is. So think twice before entering. \n";
-	std::cout << "Oh, and once you enter, you can't get out until defeat the final boss. \nI see... So you decided... You really are a fool! Well, i will explain you the basics then.\n";
-	std::cout << "There are some useful tools you can call any time during your path.\nIf you type 'status', a table with your inventory, name and hp will appear.\n"; 
-	std::cout << "By typing 'help', some instructions about how to move around the dungeon, and anything you can need will show.\nI think thats all! Are you ready? Good Luck!\n\n\n";
+	std::cout << "Okay " << player.name << "! Before entering, I have to warn you! The beast inside is called Zu, he is a fire dragon. \n"; 
+	std::cout << "He breaths a fire that can melt anything. Trust me, if you enter, you will discover what truly fear is.\nSo think  it twice!\n";
+	std::cout << "Take this enchanted trinket, it will tell you where the treasure room is. Zu will probably be there. \n";
+	std::cout << "Are you ready? Good luck " << player.name << "! Our people will never forget your name...!!\n\n";
+	std::cout << "Use the 'help' command by typing it to see all the options.\n"; 
+	std::cout << "----------------------------------------------------------------------------------------------------------\n";
 }
 
 void showMap() {
@@ -446,7 +449,17 @@ void showMap() {
 }
 
 void showHelp() {
-
+	std::cout << "This is a text-based game, all your interactions will be done by typing certain instructions.\n";
+	std::cout << "Depending if you are in combat or not you will be able to type different things.\n";
+	std::cout << "Once you step on an enemy position, you will enter combat until one dies. \n\n";
+	std::cout << "[OUT OF COMBAT]\n";
+	std::cout << "go + direction --> the directions you can go will be shown during the game depending on your position (north,south...)\n";
+	std::cout << "pick + item --> this will be used to pick the items you stand on, such as potions, swords, keys...\n";
+	std::cout << "use + item --> for using the items you collect such as the MAP, potions or a key. Swords can only be used during combat. \n";
+	std::cout << "status --> use it to see your inventory and HP\n";
+	std::cout << "help --> if you are here you already know :P just to show that can only be done out of comabt. \n\n";
+	std::cout << "[IN OF COMBAT]\n";
+	std::cout << "use + weapon/item --> until you collect a weapon. You will have to fight with our fists. In combat you can also use potions. \n";
 }
 
 int main() {
