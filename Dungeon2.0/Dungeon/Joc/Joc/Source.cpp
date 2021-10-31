@@ -65,25 +65,21 @@ void initEnemys() {
 	enemies[GOBLIN].name = "Goblin";
 	enemies[GOBLIN].max_life = 20;
 	enemies[GOBLIN].cur_life = 20;
-	enemies[GOBLIN].dmg = 5 + rand() % 8 + 1;
 	enemies[GOBLIN].attack = "Slash";
 
 	enemies[TROLL].name = "Troll";
 	enemies[TROLL].max_life = 40;
 	enemies[TROLL].cur_life = 40;
-	enemies[TROLL].dmg = 10 + rand() % 8 + 1;
 	enemies[TROLL].attack = "Butting";
 
 	enemies[WIZARD].name = "Wizard";
 	enemies[WIZARD].max_life = 60;
 	enemies[WIZARD].cur_life = 60;
-	enemies[WIZARD].dmg = 15 + rand() % 10 + 1;
 	enemies[WIZARD].attack = "Fire Explosion";
 
 	enemies[DRAGON].name = "Zu: The fire dragon";
 	enemies[DRAGON].max_life = 200;
 	enemies[DRAGON].cur_life = 200;
-	enemies[DRAGON].dmg = 15 + rand() % 10 + 1;
 	enemies[DRAGON].attack = "Fire Breath";
 }
 
@@ -117,6 +113,9 @@ void changeTile() {
 		map[i][j] = '.';
 	}
 	else if (map[i][j] == 'M') {
+		map[i][j] = '.';
+	}
+	else if (map[i][j] == '|') {
 		map[i][j] = '.';
 	}
 }
@@ -291,32 +290,44 @@ void curEnemy() {
 	if (getEnemy(player.pos_x, player.pos_y) == "Goblin") {
 		enemyMaxhp = enemies[GOBLIN].max_life;
 		enemyCurhp = enemies[GOBLIN].cur_life;
-		enemyDmg = enemies[GOBLIN].dmg;
 		currentEnemyName = enemies[GOBLIN].name;
 		currentEnemyAttack = enemies[GOBLIN].attack;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Troll") {
 		enemyMaxhp = enemies[TROLL].max_life;
 		enemyCurhp = enemies[TROLL].cur_life;
-		enemyDmg = enemies[TROLL].dmg;
 		currentEnemyName = enemies[TROLL].name;
 		currentEnemyAttack = enemies[TROLL].attack;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Wizard") {
 		enemyMaxhp = enemies[WIZARD].max_life;
 		enemyCurhp = enemies[WIZARD].cur_life;
-		enemyDmg = enemies[WIZARD].dmg;
 		currentEnemyName = enemies[WIZARD].name;
 		currentEnemyAttack = enemies[WIZARD].attack;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Zu: The fire dragon") {
 		enemyMaxhp = enemies[DRAGON].max_life;
 		enemyCurhp = enemies[DRAGON].cur_life;
-		enemyDmg = enemies[DRAGON].dmg;
 		currentEnemyName = enemies[DRAGON].name;
 		currentEnemyAttack = enemies[DRAGON].attack;
 	}
 
+}
+
+void initEnemyDmg() {
+
+	if (getEnemy(player.pos_x, player.pos_y) == "Goblin") {
+		enemyDmg = 5 + rand() % 8 + 1;
+	}
+	else if (getEnemy(player.pos_x, player.pos_y) == "Troll") {
+		enemyDmg = 10 + rand() % 8 + 1;
+	}
+	else if (getEnemy(player.pos_x, player.pos_y) == "Wizard") {
+		enemyDmg = 15 + rand() % 10 + 1;
+	}
+	else if (getEnemy(player.pos_x, player.pos_y) == "Zu: The fire dragon") {
+		enemyDmg = 15 + rand() % 10 + 1;
+	}
 }
 
 void searchBoss() {
@@ -449,7 +460,7 @@ void showMap() {
 }
 
 void showHelp() {
-	std::cout << "This is a text-based game, all your interactions will be done by typing certain instructions.\n";
+	std::cout << "\nThis is a text-based game, all your interactions will be done by typing certain instructions.\n";
 	std::cout << "Depending if you are in combat or not you will be able to type different things.\n";
 	std::cout << "Once you step on an enemy position, you will enter combat until one dies. \n\n";
 	std::cout << "[OUT OF COMBAT]\n";
@@ -620,6 +631,7 @@ int main() {
 		else if (combatMode) {
 			while (combatMode) {
 				finalBoss();
+				initEnemyDmg();
 				initCombatMap();
 				std::cout << currentEnemyName << " attacks you with " << currentEnemyAttack << ". It deals you "<< enemyDmg << " dmg."<<std::endl;
 				std::cout << "What are you going to do? \n> ";
