@@ -49,8 +49,6 @@ std::string currentEnemyAttack;
 EnemyInfo enemies[LASTENEMY];
 
 void initPlayer() {
-	std::cout << "Welcome adventurer! What is your name?\n";
-	std::cin >> player.name;
 	for (int i = 0; i < 11; i++) {
 		for (int j = 0; j < 11; j++) {
 			if (map[i][j] == '@') {
@@ -415,8 +413,17 @@ void showStatus() {
 	std::cout << "Key: " << player.keyN << std::endl;
 }
 
-void showWelcome() {
+void showHistory() {
+	std::cout << "-------------------------------------------------ZU'S LAIR-------------------------------------------------";
+	std::cout << "One day, attracted by the gold of the dwarfs, an ancient dragon suddenly appeared.  ";
+	std::cout << "Dragons have a big affinity for shiny objects, and once he smelled the gold, there was nothing we could do. ";
+	std::cout << "In no time, he destroyed our village ,took control of the prince's treasure and with that, the White Castle.";
+	std::cout << "Please adventurer, help us recover our Castle and the big treasure that shelters. ";
+	std::cout << "Really? You are up for it?! Thank you...! Excuse me.. what was your name?";
+	std::cin >> player.name;
+}
 
+void showWelcome() {
 	std::cout << "Right " << player.name << "! You are one step away from entering the dungeon... Before entering, I have to warn you!\n"; 
 	std::cout << "Through this path, you will face dangerous enemies you've never seen and you will discover what truly fear is. So think twice before entering. \n";
 	std::cout << "Oh, and once you enter, you can't get out until defeat the final boss. \nI see... So you decided... You really are a fool! Well, i will explain you the basics then.\n";
@@ -445,6 +452,7 @@ void showHelp() {
 int main() {
 	srand(time(NULL));
 	initPlayer();
+	showHistory();
 	showWelcome();
 	initEnemys();
 	searchBoss();
