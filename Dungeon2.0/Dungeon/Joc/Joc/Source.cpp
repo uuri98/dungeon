@@ -703,7 +703,7 @@ int main() {
 					}
 
 				if (player.cur_life <= 0) {
-					std::cout << "\n\nSeems like you died...\n";
+					std::cout << "\n\nOh no!" << currentEnemyName << "'s hit was critical... You lost all your health...\n";
 					std::cout << "------------GAME OVER----------\n";
 					system("pause");
 					return 0;
@@ -722,10 +722,11 @@ int main() {
 						system("pause");
 						return 0;
 					}
-					combatMode = false;
-					std::cout << currentEnemyName << " died!\n";
-					changeTile();
-
+					else {
+						combatMode = false;
+						std::cout << currentEnemyName << " died!\n";
+						changeTile();
+					}
 				}
 				system("pause");
 				system("cls");
