@@ -6,7 +6,7 @@
 enum enemys { GOBLIN,TROLL,WIZARD, DRAGON, LASTENEMY };
 
 char map[11][11] = {{'#','#','#','#','#','#','#','#','#','#','#'},
-					{'#','@','.','G','P','#','B','#','B','D','#'},
+					{'#','@','.','D','P','#','B','#','B','D','#'},
 					{'#','_','#','.','#','K','.','#','.','.','#'},
 					{'#','.','#','K','#','.','W','|','.','P','#'},
 					{'#','G','#','#','T','#','.','#','#','#','#'},
@@ -253,7 +253,13 @@ void enemySurroundings() {
 
 	if (hasEnemy(player.pos_x, player.pos_y)) {
 		enemy = getEnemy(player.pos_x, player.pos_y);
-		std::cout << "You stepped into a " << enemy << std::endl;
+		if (enemy == "Zu: The fire dragon") {
+			std::cout << "So this is where the heat was coming from... Here you are " << enemy <<"!"<< std::endl;
+		}
+		else {
+			std::cout << "You stepped into a " << enemy << std::endl;
+		}
+		
 	}
 	else if (hasEnemy(player.pos_x, player.pos_y + 1)) {
 		enemy = getEnemy(player.pos_x, player.pos_y + 1);
@@ -261,11 +267,23 @@ void enemySurroundings() {
 	}
 	else if (hasEnemy(player.pos_x, player.pos_y - 1)) {
 		enemy = getEnemy(player.pos_x, player.pos_y - 1);
-		std::cout << "There is a " << enemy << " north" << std::endl;
+		if (enemy == "Zu: The fire dragon") {
+			std::cout << "It is getting really hot in here... A huge heat comes from north\n";
+		}
+		else {
+			std::cout << "There is a " << enemy << " north" << std::endl;
+		}
+		
 	}
 	else if (hasEnemy(player.pos_x + 1, player.pos_y)) {
 		enemy = getEnemy(player.pos_x + 1, player.pos_y);
-		std::cout << "There is a " << enemy << " east" << std::endl;
+		if (enemy == "Zu: The fire dragon") {
+			std::cout << "It is getting really hot in here... A huge heat comes from east\n";
+		}
+		else {
+			std::cout << "There is a " << enemy << " east" << std::endl;
+		}
+		
 	}
 	else if (hasEnemy(player.pos_x - 1, player.pos_y)) {
 		enemy = getEnemy(player.pos_x - 1, player.pos_y);
@@ -381,7 +399,7 @@ void finalBoss() {
 	if (currentEnemyName == "Zu: The fire dragon") {
 
 		if (enemyCurhp == 200) {
-			std::cout << "\nYou made it to Zu: The fire dragon! He looks at you like a human looks at an ant...\nWill I be able to slay this monstruosity..? \n";
+			std::cout << "\nHe looks at you like a human looks at an ant...\nWill I be able to slay this monstruosity..? \n";
 		}
 	}
 }
