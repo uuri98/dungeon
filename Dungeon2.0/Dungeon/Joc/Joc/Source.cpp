@@ -6,7 +6,7 @@
 enum enemys { GOBLIN,TROLL,WIZARD, DRAGON, LASTENEMY };
 
 char map[11][11] = {{'#','#','#','#','#','#','#','#','#','#','#'},
-					{'#','@','.','D','P','#','B','#','B','D','#'},
+					{'#','@','.','G','P','#','B','#','B','D','#'},
 					{'#','_','#','.','#','K','.','#','.','.','#'},
 					{'#','.','#','K','#','.','W','|','.','P','#'},
 					{'#','G','#','#','T','#','.','#','#','#','#'},
@@ -29,7 +29,7 @@ struct EnemyInfo {
 struct PlayerInfo {
 	std::string name;
 	int max_life = 100;
-	int cur_life = 0;
+	int cur_life = 100;
 	int dmg;
 	int swordN;
 	int bombN;
@@ -63,23 +63,23 @@ void initPlayer() {
 void initEnemys() {
 	
 	enemies[GOBLIN].name = "Goblin";
-	enemies[GOBLIN].max_life = 20;
-	enemies[GOBLIN].cur_life = 20;
+	enemies[GOBLIN].max_life = 25;
+	enemies[GOBLIN].cur_life = 25;
 	enemies[GOBLIN].attack = "Slash";
 
 	enemies[TROLL].name = "Troll";
-	enemies[TROLL].max_life = 40;
-	enemies[TROLL].cur_life = 40;
+	enemies[TROLL].max_life = 50;
+	enemies[TROLL].cur_life = 50;
 	enemies[TROLL].attack = "Butting";
 
 	enemies[WIZARD].name = "Wizard";
-	enemies[WIZARD].max_life = 60;
-	enemies[WIZARD].cur_life = 60;
+	enemies[WIZARD].max_life = 65;
+	enemies[WIZARD].cur_life = 65;
 	enemies[WIZARD].attack = "Fire Explosion";
 
 	enemies[DRAGON].name = "Zu: The fire dragon";
-	enemies[DRAGON].max_life = 200;
-	enemies[DRAGON].cur_life = 200;
+	enemies[DRAGON].max_life = 160;
+	enemies[DRAGON].cur_life = 160;
 	enemies[DRAGON].attack = "Fire Breath";
 }
 
@@ -335,16 +335,16 @@ void curEnemy() {
 void initEnemyDmg() {
 
 	if (getEnemy(player.pos_x, player.pos_y) == "Goblin") {
-		enemyDmg = 5 + rand() % 8 + 1;
+		enemyDmg = 5 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Troll") {
-		enemyDmg = 10 + rand() % 8 + 1;
+		enemyDmg = 10 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Wizard") {
-		enemyDmg = 15 + rand() % 10 + 1;
+		enemyDmg = 15 + rand() % 5 + 1;
 	}
 	else if (getEnemy(player.pos_x, player.pos_y) == "Zu: The fire dragon") {
-		enemyDmg = 15 + rand() % 10 + 1;
+		enemyDmg = 15 + rand() % 20 + 1;
 	}
 }
 
@@ -489,6 +489,41 @@ void showHelp() {
 	std::cout << "help --> if you are here you already know :P just to show that can only be done out of comabt. \n\n";
 	std::cout << "[IN OF COMBAT]\n";
 	std::cout << "use + weapon/item --> until you collect a weapon. You will have to fight with our fists. In combat you can also use potions. \n";
+}
+
+void showSkull() {
+	std::cout << "\n\nOh no! " << currentEnemyName << "'s hit was critical!!\nSeems like you died...\n\n";
+	std::cout << "  _______________________________________________________\n";
+	std::cout << " /                                                       \\\n";
+	std::cout << "|                  Ha ha, you're dead                     |\n";
+	std::cout << " \\_________               _______________________________/\n";
+	std::cout << "           \\_         __ /   ___---------__\n";
+	std::cout << "             \\      _/      /              \\_\n";
+	std::cout << "              \\    /       /                 \\\n";
+	std::cout << "               |  /       | _    _ \\          \\\n";
+	std::cout << "               | |       / / \\  / \\ |          \\\n";
+	std::cout << "               | |       ||   ||   ||           |\n";
+	std::cout << "               | |       | \\_//\\\\_/ |           |\n";
+	std::cout << "               | |       |_| (||)   |_______|   |\n";
+	std::cout << "               | |         |  ||     | _  / /   |\n";
+	std::cout << "                \\ \\        |_________|| \\/ /   /\n";
+	std::cout << "                 \\ \\_       |_|_|_|_|/|  _/___/\n";
+	std::cout << "                  \\__ >      _ _ /_ _/  |\n";
+	std::cout << "                           .|_|_|_|_|   |\n";
+	std::cout << "                           |           /\n";
+	std::cout << "                           |__________/\n";
+}
+
+void showGrats() {
+	std::cout << "\n\nYou defeated Zu! Thank you! Your name will never be forgotten!\n";
+	std::cout << "                                 _\n";
+	std::cout << "                                | |\n";
+	std::cout << "  ___ ___  _ __   __ _ _ __ __ _| |_ ___\n";
+	std::cout << " / __/ _ \\| '_ \\ / _` | '__/ _` | __/ __| \n";
+	std::cout << "| (_| (_) | | | | (_| | | | (_| | |_\\__ \\ \n";
+	std::cout << " \\___\\___/|_| |_|\\__, |_|  \\__ _|\\__|___/ \n";
+	std::cout << "                 __/ |\n";
+	std::cout << "                |___ /\n";
 }
 
 int main() {
@@ -660,7 +695,7 @@ int main() {
 						if (split_input[0] == "use") {
 							if (split_input[1] == "sword") {
 								if (player.swordN > 0) {
-									player.dmg = 30;
+									player.dmg = 15 + rand()%15+1;
 								}
 								else {
 									std::cout << "You dont have any swords!\n";
@@ -668,7 +703,7 @@ int main() {
 							}
 							else if (split_input[1] == "bomb") {
 								if (player.bombN > 0) {
-									player.dmg = 60;
+									player.dmg = 45+rand()%20+1;
 									player.bombN--;
 								}
 								else {
@@ -687,7 +722,7 @@ int main() {
 								}
 							}
 							else if (split_input[1] == "fists") {
-								player.dmg =5 + rand() % 10 + 1;
+								player.dmg =7 + rand() % 8 + 1;
 							}
 							else {
 								std::cout << "Use what?\n";
@@ -703,46 +738,21 @@ int main() {
 					}
 
 				if (player.cur_life <= 0) {
-					std::cout << "\n\nOh no! "<< currentEnemyName <<"'s hit was critical!!\nSeems like you died...\n\n";
-					std::cout << "  _______________________________________________________\n";
-					std::cout << " /                                                       \\\n";
-					std::cout << "|                  Ha ha, you're dead                     |\n";
-					std::cout << " \\_________               _______________________________/\n";
-					std::cout << "           \\_         __ /   ___---------__\n";
-					std::cout << "             \\      _/      /              \\_\n";
-					std::cout << "              \\    /       /                 \\\n";
-					std::cout << "               |  /       | _    _ \\          \\\n";
-					std::cout << "               | |       / / \\  / \\ |          \\\n";
-					std::cout << "               | |       ||   ||   ||           |\n";
-					std::cout << "               | |       | \\_//\\\\_/ |           |\n";
-					std::cout << "               | |       |_| (||)   |_______|   |\n";
-					std::cout << "               | |         |  ||     | _  / /   |\n";
-					std::cout << "                \\ \\        |_________|| \\/ /   /\n";
-					std::cout << "                 \\ \\_       |_|_|_|_|/|  _/___/\n";
-					std::cout << "                  \\__ >      _ _ /_ _/  |\n";
-					std::cout << "                           .|_|_|_|_|   |\n";
-					std::cout << "                           |           /\n";
-					std::cout << "                           |__________/\n";
+					showSkull();
 					system("pause");
 					return 0;
 				}
 				else if (enemyCurhp <= 0) {
 					if (enemyMaxhp == 200) {
-						std::cout << "\n\nYou defeated Zu! Thank you! Your name will never be forgotten!\n";
-						std::cout << "                                 _\n";
-						std::cout << "                                | |\n";
-						std::cout << "  ___ ___  _ __   __ _ _ __ __ _| |_ ___\n";
-						std::cout << " / __/ _ \\| '_ \\ / _` | '__/ _` | __/ __| \n";
-						std::cout << "| (_| (_) | | | | (_| | | | (_| | |_\\__ \\ \n";
-						std::cout << " \\___\\___/|_| |_|\\__, |_|  \\__ _|\\__|___/ \n";
-						std::cout << "                 __/ |\n";
-						std::cout << "                |___ /\n";
+						showGrats();
 						system("pause");
 						return 0;
 					}
-					combatMode = false;
-					std::cout << currentEnemyName << " died!\n";
-					changeTile();
+					else {
+						combatMode = false;
+						std::cout << currentEnemyName << " died!\n";
+						changeTile();
+					}
 
 				}
 				system("pause");
