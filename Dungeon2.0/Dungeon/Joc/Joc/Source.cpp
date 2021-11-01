@@ -684,6 +684,24 @@ int main() {
 		}
 		else if (combatMode) {
 			while (combatMode) {
+				if (player.cur_life <= 0) {
+					showSkull();
+					system("pause");
+					return 0;
+				}
+				else if (enemyCurhp <= 0) {
+					if (enemyMaxhp == 200) {
+						showGrats();
+						system("pause");
+						return 0;
+					}
+					else {
+						combatMode = false;
+						std::cout << currentEnemyName << " died!\n";
+						changeTile();
+					}
+				}
+				else{
 				finalBoss();
 				initEnemyDmg();
 				initCombatMap();
@@ -736,27 +754,10 @@ int main() {
 					else {
 						std::cout << "Incorrect number of words!\n";
 					}
-
-				if (player.cur_life <= 0) {
-					showSkull();
-					system("pause");
-					return 0;
-				}
-				else if (enemyCurhp <= 0) {
-					if (enemyMaxhp == 200) {
-						showGrats();
-						system("pause");
-						return 0;
-					}
-					else {
-						combatMode = false;
-						std::cout << currentEnemyName << " died!\n";
-						changeTile();
-					}
-
-				}
 				system("pause");
 				system("cls");
+				}
+				
 			}
 		}
 
