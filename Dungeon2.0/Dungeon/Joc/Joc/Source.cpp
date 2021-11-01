@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include "Utils.h"
 #include <time.h>
@@ -29,7 +29,7 @@ struct EnemyInfo {
 struct PlayerInfo {
 	std::string name;
 	int max_life = 100;
-	int cur_life = 100;
+	int cur_life = 0;
 	int dmg;
 	int swordN;
 	int bombN;
@@ -703,8 +703,26 @@ int main() {
 					}
 
 				if (player.cur_life <= 0) {
-					std::cout << "\n\nSeems like you died...\n";
-					std::cout << "------------GAME OVER----------\n";
+					std::cout << "\n\nOh no! "<< currentEnemyName <<"'s hit was critical!!\nSeems like you died...\n\n";
+					std::cout << "  _______________________________________________________\n";
+					std::cout << " /                                                       \\\n";
+					std::cout << "|                  Ha ha, you're dead                     |\n";
+					std::cout << " \\_________               _______________________________/\n";
+					std::cout << "           \\_         __ /   ___---------__\n";
+					std::cout << "             \\      _/      /              \\_\n";
+					std::cout << "              \\    /       /                 \\\n";
+					std::cout << "               |  /       | _    _ \\          \\\n";
+					std::cout << "               | |       / / \\  / \\ |          \\\n";
+					std::cout << "               | |       ||   ||   ||           |\n";
+					std::cout << "               | |       | \\_//\\\\_/ |           |\n";
+					std::cout << "               | |       |_| (||)   |_______|   |\n";
+					std::cout << "               | |         |  ||     | _  / /   |\n";
+					std::cout << "                \\ \\        |_________|| \\/ /   /\n";
+					std::cout << "                 \\ \\_       |_|_|_|_|/|  _/___/\n";
+					std::cout << "                  \\__ >      _ _ /_ _/  |\n";
+					std::cout << "                           .|_|_|_|_|   |\n";
+					std::cout << "                           |           /\n";
+					std::cout << "                           |__________/\n";
 					system("pause");
 					return 0;
 				}
